@@ -29,7 +29,6 @@ export async function fight(firstFighter, secondFighter) {
           secondFighter.isBlock = true;
           break;
         default:
-          console.log('any  DOWN');
           break;
       }
     });
@@ -49,7 +48,6 @@ export async function fight(firstFighter, secondFighter) {
           secondFighter.isBlock = false;
           break;
         default:
-          console.log('any  UP');
           break;
       }
     });

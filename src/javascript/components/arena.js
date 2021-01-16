@@ -9,7 +9,8 @@ export function renderArena(selectedFighters) {
   root.innerHTML = '';
   root.append(arena);
 
-  fight(...selectedFighters);
+  fight(...selectedFighters)
+    .then(fighter => console.log(fighter));
 
   // todo:
   // - start the fight
