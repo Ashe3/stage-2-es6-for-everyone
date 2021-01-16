@@ -21,7 +21,6 @@ function createArena(selectedFighters) {
   const arena = createElement({ tagName: 'div', className: 'arena___root' });
   const healthIndicators = createHealthIndicators(...selectedFighters);
   const fighters = createFighters(...selectedFighters);
-  
   arena.append(healthIndicators, fighters);
   return arena;
 }
