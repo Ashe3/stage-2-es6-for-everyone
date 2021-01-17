@@ -2,12 +2,33 @@
   display: flex;
   flex-direction: column;
   flex-basis: 250px;
+
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 25px;
 }
 
 .fighter-preview___right {
-  align-items: flex-end;
+  align-items: center;
 }
 
 .fighter-preview___left {
-  align-items: flex-start;
+  align-items: center;
+}
+
+.fighter-preview___right img {
+  transform: scaleX(-1);
+}
+
+.fighter-preview___img {
+  max-width: 250px;
+  max-height: 300px;
+}
+
+.fighterInfo {
+  list-style-type: none;
+  color: rgb(224, 0, 0);
+  font-weight: 800;
+  font-size: 30px;
+  -webkit-text-stroke-width: 1px; 
+   -webkit-text-stroke-color: rgb(0, 0, 0);
 }
