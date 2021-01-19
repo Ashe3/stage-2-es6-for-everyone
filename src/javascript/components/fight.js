@@ -8,9 +8,12 @@ export async function fight(firstFighter, secondFighter) {
     const firstFighterHealthBar = document.getElementById('left-fighter-indicator');
     const secondFighterHealthBar = document.getElementById('right-fighter-indicator');
 
-    const hit = (attacker, defender, getCurrentDamage, bar) => {
-      defender.currenthealth -= getCurrentDamage(attacker, defender);
-      bar.style.width = defender.currenthealth >= 0 ? `${defender.currenthealth / defender.health * 100}%` : '0%';
+    const hit = (attacker, defender, getCurrentDamage, bar, isCrit) => {
+
+      if((!attacker.isBlock && !defender.isBlock) || isCrit) {
+        defender.currenthealth -= getCurrentDamage(attacker, defender);
+        bar.style.width = defender.currenthealth >= 0 ? `${defender.currenthealth / defender.health * 100}%` : '0%';
+      }
 
       if (defender.currenthealth <= 0) {
         resolve(attacker);
@@ -69,11 +72,11 @@ export function getDamage(attacker, defender) {
 }
 
 export function getHitPower(fighter) {
-  return fighter.isBlock ? 0 : fighter.attack * Math.random() + 1;
+  return fighter.attack * Math.random() + 1;
 }
 
 export function getBlockPower(fighter) {
-  return !fighter.isBlock ? 0 : fighter.defense * Math.random() + 1;
+  return fighter.defense * Math.random() + 1;
 }
 
 function getCriticalDamage(fighter) {
@@ -95,7 +98,7 @@ function tryToCriticalHit(attacker, defender, makeHit, bar, keyPressed, combo) {
   const { isCriticalActive, isBlock } = attacker;
 
   if (checkComboEquality(Array.from(attacker.pressedCombo), combo) && isCriticalActive && !isBlock) {
-    makeHit(attacker, defender, getCriticalDamage, bar);
+    makeHit(attacker, defender, getCriticalDamage, bar, true);
     attacker.isCriticalActive = false;
     setTimeout(() => attacker.isCriticalActive = true, 10000);
   }
